@@ -20,6 +20,7 @@
 					<li><a href="form_kadai.php" class = "btn" id = "menu2">課題の追加</a></li>
 					<li><a href="sent_07.php" class = "btn" id = "menu3">課題一覧</a></li>
 					<li><a href="delete_07.php" class = "btn" id = "menu4">課題の削除</a></li>
+					<li><a href="logout.php" class = "btn" id = "menu5">ログアウト</a></li>
 				</ul>
 			</nav>
 		</div>

@@ -3,6 +3,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" type="text/css" href="style07.css">
 		<?php
+		session_start();
 		error_reporting(E_ALL);
 		ini_set( 'display_errors', 1 );
 
@@ -13,7 +14,7 @@
 		    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-		    $stmt = $pdo->prepare("SELECT * FROM homeworks");
+		    $stmt = $pdo->prepare("SELECT * FROM homeworks".$_SESSION["NAME"]);
 		  	$stmt->execute();
 				$r = $stmt->fetchAll();
 			}catch (Exception $e) {
@@ -35,6 +36,7 @@
 					<li><a href="form_kadai.php" class = "btn" id = "menu2">課題の追加</a></li>
 					<li><a href="sent_07.php" class = "btn" id = "menu3">課題一覧</a></li>
 					<li><a href="delete_07.php" class = "btn" id = "menu4">課題の削除</a></li>
+					<li><a href="logout.php" class = "btn" id = "menu5">ログアウト</a></li>
 				</ul>
 			</nav>
 		</div>

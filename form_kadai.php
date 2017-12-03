@@ -33,7 +33,12 @@ if (isset($_POST[submit])) {
 
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-			$stmt = $pdo->prepare("INSERT INTO homeworks(homework, deadline) VALUES (?, ?)");
+			$pdo->exec("CREATE TABLE IF NOT EXISTS homeworks".$_SESSION["NAME"]."(
+				id INTEGER PRIMARY KEY AUTOINCREMENT,
+				homework text,
+				deadline
+			)");
+			$stmt = $pdo->prepare("INSERT INTO homeworks".$_SESSION["NAME"]."(homework, deadline) VALUES (?, ?)");
 			$stmt->execute(array($kadai, $deadline));
 
 			$message = '登録が成功しました';
@@ -63,6 +68,7 @@ if (isset($_POST[submit])) {
 					<li><a href="form_kadai.php" class = "btn" id = "menu2">課題の追加</a></li>
 					<li><a href="sent_07.php" class = "btn" id = "menu3">課題一覧</a></li>
 					<li><a href="delete_07.php" class = "btn" id = "menu4">課題の削除</a></li>
+					<li><a href="logout.php" class = "btn" id = "menu5">ログアウト</a></li>
 				</ul>
 			</nav>
 		</div>
