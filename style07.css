@@ -1,0 +1,123 @@
+body {
+	font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic';
+	background-color: black;
+	color: white;
+	margin: 0px;
+}
+
+
+.tarea{
+	width: 50%;
+}
+.deadline{
+	width: 30%;
+}
+
+header {
+	background-color:rgba(50,50,50,0.8);
+  height: 30px;
+  text-align: center;
+}
+header h3 {
+		font-weight: 500;
+		margin-top: 10px;
+    position: relative;
+    width: 100%;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+}
+header h3::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 1px;
+    margin: 0 auto;
+    text-align: center;
+    background-image: -webkit-linear-gradient(left, transparent, white 25%, white 75%, transparent);
+    background-image: linear-gradient(to right, transparent, white 25%, white 75%, transparent);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container-left{
+	width: 20%;
+	float: left;
+}
+
+nav ul{
+	list-style: none;
+	padding-left: 0px;
+	margin-top: 5px;
+}
+
+nav a{
+	display: block;
+	width: 100%;
+	font-size: 12px;
+	text-align: center;
+	text-decoration: none;
+	margin-right: auto;
+}
+
+.container-right{
+	width: 60%;
+	float: right;
+	padding-right: 15%;
+
+}
+
+.main1{
+  width: 80%;
+  margin: 5px auto;
+  padding: 5% 15%;
+  background-color: #F5F5F5;
+  color: #333;
+	display: inline-block;
+}
+.hit{
+	color: black;
+}
+
+label{
+	display: inline-block;
+	text-align: center;
+}
+
+.btn {
+  position: relative;
+  background-color: #333;
+	border:none;
+  line-height: 25px;
+}
+
+.container-right .btn{
+	font-size: 12px;
+	padding: 3px;
+	width: 40px;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: #FFF;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.73);
+  background: rgb(50,50,50);
+  transition: .4s;
+	cursor: pointer;
+}
+
+.container-right .btn:hover {
+    text-shadow: -6px 0px 15px rgba(255, 255, 240, 0.83), 6px 0px 15px rgba(255, 255, 240, 0.83);
+
+}
+nav .btn{
+	color: #fff;
+	border-bottom: solid 1px white;
+	background-color: #333;
+}
+
+nav .btn:hover{
+	color:rgba(255,255,255,0.5);
+}
