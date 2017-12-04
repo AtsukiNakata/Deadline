@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (isset($_SESSION["NAME"])) {
+	$errorMessage = "ログアウトしました。";
+} else {
+	header("Location: logout.php");
+}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -34,7 +43,6 @@
           <P>
 						これはホーム画面です。<br>
 						<?php
-							session_start();
 							echo $_SESSION["NAME"]."さんこんにちは";
 						 ?>
 					</p>

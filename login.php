@@ -4,7 +4,7 @@ session_start();
 
 // 変数の設定
 $db['dbname'] = "users.db";  // データベースファイル
-$db['dbname2'] = "homeworks.db";
+$db['dbname2'] = "homework.db";
 $username = $_POST["username"];
 $password = $_POST["password"];
 $errorMessage = "";
@@ -26,11 +26,9 @@ if (isset($_POST["login"])) {
 
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-
 			// ユーザ名からユーザーデータ 取得
 			$stmt = $pdo->prepare('SELECT * FROM users WHERE name = ?');
 			$stmt->execute(array($username));
-
 			// ユーザ名がデータベースにあった場合
 			if ($row = $stmt->fetch()) {
 
@@ -40,6 +38,12 @@ if (isset($_POST["login"])) {
 					session_regenerate_id(true);
 
 					$_SESSION["NAME"] = $username;
+					$pdo = new PDO('sqlite:'.$db['dbname2']);
+					$pdo->exec("CREATE TABLE IF NOT EXISTS homeworks_".$_SESSION["NAME"]."(
+						id INTEGER PRIMARY KEY AUTOINCREMENT,
+						homework text,
+						deadline
+					)");
 					header("Location: home_kadai07.php");  // メイン画面へ遷移
 					exit();  // 処理終了
 

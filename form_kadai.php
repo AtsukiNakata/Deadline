@@ -2,6 +2,11 @@
 // セッション開始
 session_start();
 
+if (isset($_SESSION["NAME"])) {
+	$errorMessage = "ログアウトしました。";
+} else {
+	header("Location: logout.php");
+}
 // 変数の設定
 $db['dbname'] = "homework.db";
 $kadai = $_POST["kadai"];
@@ -33,12 +38,12 @@ if (isset($_POST[submit])) {
 
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-			$pdo->exec("CREATE TABLE IF NOT EXISTS homeworks".$_SESSION["NAME"]."(
+			$pdo->exec("CREATE TABLE IF NOT EXISTS homeworks_".$_SESSION["NAME"]."(
 				id INTEGER PRIMARY KEY AUTOINCREMENT,
 				homework text,
 				deadline
 			)");
-			$stmt = $pdo->prepare("INSERT INTO homeworks".$_SESSION["NAME"]."(homework, deadline) VALUES (?, ?)");
+			$stmt = $pdo->prepare("INSERT INTO homeworks_".$_SESSION["NAME"]."(homework, deadline) VALUES (?, ?)");
 			$stmt->execute(array($kadai, $deadline));
 
 			$message = '登録が成功しました';

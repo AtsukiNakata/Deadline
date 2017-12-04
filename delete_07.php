@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (isset($_SESSION["NAME"])) {
+	$errorMessage = "ログアウトしました。";
+} else {
+	header("Location: logout.php");
+}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,7 +24,7 @@
           $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-          $stmt = $pdo->prepare("SELECT * FROM homeworks");
+          $stmt = $pdo->prepare("SELECT * FROM homeworks_".$_SESSION["NAME"]);
           $stmt->execute();
           $r = $stmt->fetchAll();
         }catch (Exception $e) {
@@ -31,7 +40,7 @@
 
         			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         			$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        			$stmt = $pdo->prepare("DELETE FROM homeworks".$_SESSION["NAME"]." WHERE id = ?");
+        			$stmt = $pdo->prepare("DELETE FROM homeworks_".$_SESSION["NAME"]." WHERE id = ?");
         			$stmt->execute(array($delete_kadai));
         			$message = '課題の削除に成功しました。';
 							header("Location: delete_finish.php");
@@ -82,7 +91,7 @@
       					for($count = 0; $count < count($r); $count++){
       						$number = $count+1;
       				    echo "<option value = {$r[$count]["id"]}>";
-      				    echo "{$r[$count]["homework".$_SESSION["NAME"]]}"." "."{$r[$count]["deadline"]}";
+      				    echo "{$r[$count]["homework_".$_SESSION["NAME"]]}"." "."{$r[$count]["deadline"]}";
       				    echo "</option>";
       				    echo "\n";
       					}

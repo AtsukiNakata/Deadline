@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if (isset($_SESSION["NAME"])) {
+	$errorMessage = "ログアウトしました。";
+} else {
+	header("Location: logout.php");
+}
+?>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,7 +24,7 @@
 		    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-		    $stmt = $pdo->prepare("SELECT * FROM homeworks".$_SESSION["NAME"]);
+		    $stmt = $pdo->prepare("SELECT * FROM homeworks_".$_SESSION["NAME"]);
 		  	$stmt->execute();
 				$r = $stmt->fetchAll();
 			}catch (Exception $e) {
