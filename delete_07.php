@@ -91,7 +91,7 @@ if (isset($_SESSION["NAME"])) {
       					for($count = 0; $count < count($r); $count++){
       						$number = $count+1;
       				    echo "<option value = {$r[$count]["id"]}>";
-      				    echo "{$r[$count]["homework_".$_SESSION["NAME"]]}"." "."{$r[$count]["deadline"]}";
+      				    echo "{$r[$count]["homework"]}"." "."{$r[$count]["deadline"]}";
       				    echo "</option>";
       				    echo "\n";
       					}
