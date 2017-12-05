@@ -38,6 +38,7 @@ if (isset($_POST["login"])) {
 					session_regenerate_id(true);
 
 					$_SESSION["NAME"] = $username;
+					
 					$pdo = new PDO('sqlite:'.$db['dbname2']);
 					$pdo->exec("CREATE TABLE IF NOT EXISTS homeworks_".$_SESSION["NAME"]."(
 						id INTEGER PRIMARY KEY AUTOINCREMENT,
