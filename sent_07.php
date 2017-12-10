@@ -75,7 +75,16 @@ if (isset($_POST["submit"])) {
 
 		<div class="container-right">
 			<div class = "main1">
-				<p>以下に課題が表示されます。もし課題がない場合は何も表示されません。</p>
+				<p>
+          <?php
+            $r_filter = array_filter($r);
+            if(!empty($r_filter)){
+              echo"以下に課題が表示されます。削除を押すと課題が削除されます。";
+            }else{
+              echo"課題は現在ありません。";
+            }
+          ?>
+        </p>
 				<table id = "tbl">
 					<?php
           function sort_by_target_date($a, $b) {
