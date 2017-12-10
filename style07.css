@@ -75,11 +75,6 @@ nav a{
   margin: 5px auto;
   padding: 5% 15%;
   background-color: #F5F5F5;
-	background-image: url("./d3part2.JPG");
-	background-position: right;
-	background-repeat: no-repeat;
-	-webkit-background-size: contain;
-	background-size: contain;
   color: #333;
 	display: inline-block;
 }
@@ -97,6 +92,7 @@ label{
   background-color: #333;
 	border:none;
   line-height: 25px;
+	border-radius: 2px;
 }
 
 .container-right .btn{

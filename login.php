@@ -38,12 +38,13 @@ if (isset($_POST["login"])) {
 					session_regenerate_id(true);
 
 					$_SESSION["NAME"] = $username;
-					
+
 					$pdo = new PDO('sqlite:'.$db['dbname2']);
 					$pdo->exec("CREATE TABLE IF NOT EXISTS homeworks_".$_SESSION["NAME"]."(
 						id INTEGER PRIMARY KEY AUTOINCREMENT,
 						homework text,
-						deadline
+						deadline_date,
+						deadline_time,
 					)");
 					header("Location: home_kadai07.php");  // メイン画面へ遷移
 					exit();  // 処理終了

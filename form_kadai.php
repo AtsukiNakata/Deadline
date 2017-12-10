@@ -14,7 +14,8 @@ $deadline_y = $_POST["deadline_y"];
 $deadline_m = $_POST["deadline_m"];
 $deadline_d = $_POST["deadline_d"];
 $deadline_t = $_POST["deadline_t"];
-$deadline = $deadline_y."-".$deadline_m."-".$deadline_d." ".$deadline_t;
+$deadline_date = $deadline_y."-".$deadline_m."-".$deadline_d;
+$deadline_time = $deadline_t;
 $errorMessage = "";
 
 // 送信ボタンが押された場合
@@ -41,10 +42,11 @@ if (isset($_POST[submit])) {
 			$pdo->exec("CREATE TABLE IF NOT EXISTS homeworks_".$_SESSION["NAME"]."(
 				id INTEGER PRIMARY KEY AUTOINCREMENT,
 				homework text,
-				deadline
+				deadline_date,
+				deadline_time
 			)");
-			$stmt = $pdo->prepare("INSERT INTO homeworks_".$_SESSION["NAME"]."(homework, deadline) VALUES (?, ?)");
-			$stmt->execute(array($kadai, $deadline));
+			$stmt = $pdo->prepare("INSERT INTO homeworks_".$_SESSION["NAME"]."(homework, deadline_date, deadline_time) VALUES (?, ?, ?)");
+			$stmt->execute(array($kadai, $deadline_date, $deadline_time));
 
 			$message = '登録が成功しました';
 		} catch (PDOException $e) {
@@ -72,7 +74,6 @@ if (isset($_POST[submit])) {
 					<li><a href="home_kadai07.php" class = "btn" id = "menu1">ホーム画面</a></li>
 					<li><a href="form_kadai.php" class = "btn" id = "menu2">課題の追加</a></li>
 					<li><a href="sent_07.php" class = "btn" id = "menu3">課題一覧</a></li>
-					<li><a href="delete_07.php" class = "btn" id = "menu4">課題の削除</a></li>
 					<li><a href="logout.php" class = "btn" id = "menu5">ログアウト</a></li>
 				</ul>
 			</nav>

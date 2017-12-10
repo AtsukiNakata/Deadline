@@ -66,7 +66,6 @@ if (isset($_SESSION["NAME"])) {
 					<li><a href="home_kadai07.php" class = "btn" id = "menu1">ホーム画面</a></li>
 					<li><a href="form_kadai.php" class = "btn" id = "menu2">課題の追加</a></li>
 					<li><a href="sent_07.php" class = "btn" id = "menu3">課題一覧</a></li>
-          <li><a href="delete_07.php" class = "btn" id = "menu4">課題の削除</a></li>
 					<li><a href="logout.php" class = "btn" id = "menu5">ログアウト</a></li>
 				</ul>
 			</nav>
@@ -91,7 +90,7 @@ if (isset($_SESSION["NAME"])) {
       					for($count = 0; $count < count($r); $count++){
       						$number = $count+1;
       				    echo "<option value = {$r[$count]["id"]}>";
-      				    echo "{$r[$count]["homework"]}"." "."{$r[$count]["deadline"]}";
+      				    echo "{$r[$count]["homework"]}"." "."{$r[$count]["deadline_date"]}"." "."{$r[$count]["deadline_time"]}";
       				    echo "</option>";
       				    echo "\n";
       					}
