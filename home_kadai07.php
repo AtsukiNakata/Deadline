@@ -35,9 +35,9 @@ if (isset($_SESSION["NAME"])) {
 			#menu1{
 				color:orange;
 			}
-			.main1{
-				background-image: url("./d3part2.JPG");
-				background-position: right;
+			.container-right{
+				background-image: url("./deadline1.jpg");
+				background-position: 95% 5px;
 				background-repeat: no-repeat;
 				-webkit-background-size: contain;
 				background-size: contain;
@@ -46,7 +46,7 @@ if (isset($_SESSION["NAME"])) {
 
 			<div class="container-right">
         <div class = "main1">
-          <P>
+          <p>
 						これはホーム画面です。<br>
 						<?php
 							echo $_SESSION["NAME"]."さんこんにちは";

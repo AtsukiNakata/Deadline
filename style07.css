@@ -74,7 +74,7 @@ nav a{
   width: 80%;
   margin: 5px auto;
   padding: 5% 15%;
-  background-color: #F5F5F5;
+  background-color: rgba(245,245,245,0.9);
   color: #333;
 	display: inline-block;
 }
