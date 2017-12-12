@@ -57,7 +57,8 @@ if (isset($_POST["submit"])) {
 			<nav id = "g_navi">
 				<ul id = "navi">
 					<li><a href="home_kadai07.php" class = "btn" id = "menu1">ホーム画面</a></li>
-					<li><a href="form_kadai.php" class = "btn" id = "menu2">課題の追加</a></li>
+          <li><a href="timetable.php" class = "btn" id = "menu_timetable">時間割(作成中)</a></li>
+          <li><a href="form_kadai.php" class = "btn" id = "menu2">課題の追加</a></li>
 					<li><a href="sent_07.php" class = "btn" id = "menu3">課題一覧</a></li>
 					<li><a href="logout.php" class = "btn" id = "menu5">ログアウト</a></li>
 				</ul>

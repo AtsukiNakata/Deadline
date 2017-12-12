@@ -6,6 +6,12 @@ if (isset($_SESSION["NAME"])) {
 } else {
 	header("Location: logout.php");
 }
+
+$db['dbname'] = "homework.db";
+$subject = $_POST["subject"];
+$room = $_POST["room"];
+$teacher = $_POST["teacher"];
+$errorMessage = "";
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,26 +39,33 @@ if (isset($_SESSION["NAME"])) {
 		</div>
 
 		<style type = "text/css">
-			#menu1{
-				color:orange;
-			}
-			.container-right{
-				background-image: url("./deadline1.jpg");
-				background-position: 95% 5px;
-				background-repeat: no-repeat;
-				-webkit-background-size: contain;
-				background-size: contain;
-			}
+
 		</style>
 
 			<div class="container-right">
         <div class = "main1">
-          <p>
-						これはホーム画面です。<br>
-						<?php
-							echo $_SESSION["NAME"]."さんこんにちは";
-						 ?>
-					</p>
+          <form method="POST" action="">
+  					<div class = "main1">
+  						<p>
+  						<label>科目:</label>
+  						<input class = "tarea" type="text" value="<?php if (!empty($subject)) {echo htmlspecialchars($subject, ENT_QUOTES);} ?>" name="subject" ><br>
+              <label>教室: </label>
+  						<input class = "deadline" type="text" value="<?php if (!empty($room)) {echo htmlspecialchars($room, ENT_QUOTES);} ?>" name="room" ><br>
+  						<label>教員: </label>
+  						<input class = "deadline" type="text" value="<?php if (!empty($teacher)) {echo htmlspecialchars($teacher, ENT_QUOTES);} ?>" name="teacher" ><br>
+  						<div>
+  		          <font color="#ff0000">
+  		            <?php
+  									echo htmlspecialchars($errorMessage, ENT_QUOTES);
+  									echo htmlspecialchars($message, ENT_QUOTES);
+  								 ?>
+  		          </font>
+  		        </div>
+  						<br>
+  						<input type="submit" class = "btn" name = "submit">
+  					</p>
+  					</div>
+  				</form>
         </div>
 			</div>
 	</body>
