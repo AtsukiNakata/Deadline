@@ -1,17 +1,42 @@
 <?php
 session_start();
-
 if (isset($_SESSION["NAME"])) {
 	$errorMessage = "ログアウトしました。";
 } else {
 	header("Location: logout.php");
 }
 
-$db['dbname'] = "homework.db";
-$subject = $_POST["subject"];
-$room = $_POST["room"];
-$teacher = $_POST["teacher"];
+$db['dbname'] = "subject.db";
 $errorMessage = "";
+$subject_time = $_POST["subject_link"];
+
+if (isset($_POST[submit])) {
+	$subject = $_POST["subject"];
+	$room = $_POST["room"];
+	$teacher = $_POST["teacher"];
+	$subject_time = $_POST["subject_link"];
+
+	if (empty($subject)) {
+		$errorMessage = '科目が未入力です。';
+	} else if (empty($room)) {
+		$errorMessage = '教室が未入力です。';
+	} else if (empty($teacher)) {
+		$errorMessage = '教員が未入力です。';
+	} else
+
+try {
+	$pdo = new PDO('sqlite:'.$db['dbname']);
+
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+	$stmt = $pdo->prepare("INSERT INTO subject_".$_SESSION["NAME"]."(subject_time, subject, room, teacher) VALUES (?, ?, ?, ?)");
+	$stmt->execute(array($subject_time, $subject, $room, $teacher));
+
+	$message = '登録が成功しました';
+} catch (PDOException $e) {
+	$message = $e->getMessage();
+}
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,7 +55,7 @@ $errorMessage = "";
 			<nav id = "g_navi">
 				<ul id = "navi">
 					<li><a href="home_kadai07.php" class = "btn" id = "menu1">ホーム画面</a></li>
-					<li><a href="timetable.php" class = "btn" id = "menu_timetable">時間割(作成中)</a></li>
+					<li><a href="timetable.php" class = "btn" id = "menu_timetable">時間割</a></li>
 					<li><a href="form_kadai.php" class = "btn" id = "menu2">課題の追加</a></li>
 					<li><a href="sent_07.php" class = "btn" id = "menu3">課題一覧</a></li>
 					<li><a href="logout.php" class = "btn" id = "menu5">ログアウト</a></li>
@@ -39,14 +64,17 @@ $errorMessage = "";
 		</div>
 
 		<style type = "text/css">
-
+		#menu_timetable{
+			color:orange;
+		}
 		</style>
 
 			<div class="container-right">
         <div class = "main1">
           <form method="POST" action="">
-  					<div class = "main1">
   						<p>
+								<科目の情報入力: <?php echo $subject_time ?> >
+							</p>
   						<label>科目:</label>
   						<input class = "tarea" type="text" value="<?php if (!empty($subject)) {echo htmlspecialchars($subject, ENT_QUOTES);} ?>" name="subject" ><br>
               <label>教室: </label>
@@ -62,9 +90,8 @@ $errorMessage = "";
   		          </font>
   		        </div>
   						<br>
+							<input type="hidden" name="subject_link" value=<?php echo $subject_time ?>>
   						<input type="submit" class = "btn" name = "submit">
-  					</p>
-  					</div>
   				</form>
         </div>
 			</div>

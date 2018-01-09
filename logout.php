@@ -34,6 +34,7 @@ $_SESSION = array();
         <ul id = "navi">
           <li><a href="register.php" class = "btn" id = "menu_register">新規登録</a></li>
           <li><a href="login.php" class = "btn" id = "menu_login">ログイン</a></li>
+					<li><a href="introduction.php" class = "btn" id = "menu_intro">紹介ページ</a></li>
         </ul>
       </nav>
     </div>

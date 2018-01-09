@@ -2,9 +2,11 @@
 // セッション開始
 session_start();
 
+
 // 変数の設定
 $db['dbname'] = "users.db";  // データベースファイル
 $db['dbname2'] = "homework.db";
+$db['dbname3'] = "subject.db";
 $username = $_POST["username"];
 $password = $_POST["password"];
 $errorMessage = "";
@@ -45,6 +47,14 @@ if (isset($_POST["login"])) {
 						homework text,
 						deadline_date,
 						deadline_time,
+					)");
+					$pdo = new PDO('sqlite:'.$db['dbname3']);
+					$pdo->exec("CREATE TABLE IF NOT EXISTS subject_".$_SESSION["NAME"]."(
+						id INTEGER PRIMARY KEY AUTOINCREMENT,
+						subject_time unique,
+						subject TEXT,
+						room TEXT,
+						teacher TEXT
 					)");
 					header("Location: home_kadai07.php");  // メイン画面へ遷移
 					exit();  // 処理終了
@@ -91,6 +101,7 @@ if (isset($_POST["login"])) {
   				<ul id = "navi">
     				<li><a href="register.php" class = "btn" id = "menu_register">新規登録</a></li>
   					<li><a href="login.php" class = "btn" id = "menu_login">ログイン</a></li>
+						<li><a href="introduction.php" class = "btn" id = "menu_intro">紹介ページ</a></li>
   				</ul>
     		</nav>
     	</div>
